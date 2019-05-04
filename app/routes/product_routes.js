@@ -26,8 +26,15 @@ module.exports = function(app, db) {
   });
 
   app.post("/products", (req, res) => {
-    const note = { text: req.body.body, title: req.body.title };
-    db.collection("products").insert(note, (err, result) => {
+    console.log(req);
+    const product = {
+      name: req.body.name,
+      price: req.body.price,
+      onSale: req.body.onSale,
+      store: req.body.store,
+      size: req.body.size
+    };
+    db.collection("products").insert(product, (err, result) => {
       if (err) {
         res.send({ error: "An error has occurred" });
       } else {
