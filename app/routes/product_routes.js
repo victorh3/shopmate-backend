@@ -26,7 +26,6 @@ module.exports = function(app, db) {
   });
 
   app.post("/products", (req, res) => {
-    console.log(req.body);
     const product = {
       name: req.body.name,
       price: req.body.price,
