@@ -1,3 +1,4 @@
+// https://medium.freecodecamp.org/building-a-simple-node-js-api-in-under-30-minutes-a07ea9e390d2
 const express = require("express");
 const { MongoClient } = require("mongodb");
 const bodyParser = require("body-parser");
@@ -7,7 +8,8 @@ const db = require("./config/db");
 const app = express();
 const port = 8000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true })); // To handle boy post of urlencoded
+app.use(bodyParser.json()); // To handle boy post of json
 app.use(cors());
 
 MongoClient.connect(db.url, (err, database) => {
