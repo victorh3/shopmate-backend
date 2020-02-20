@@ -15,5 +15,19 @@
   "parserOptions": {
     "ecmaVersion": 2018
   },
-  "rules": {}
+  "rules": {
+    "space-before-function-paren": [
+      "off"
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "consistent-return": [
+      "off"
+    ],
+    "func-names": [
+      "off"
+    ]
+  }
 }
