@@ -3,12 +3,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const item = require('./routes/item.route');
 
-const mongoConfig = require('./config/db');
-
 const app = express();
 const port = 8000;
 
-const mongoDB = process.env.MONGODB_URI || mongoConfig.url;
+const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
