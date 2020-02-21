@@ -1,10 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const item = require('./routes/item.route');
 
+dotenv.config();
+
 const app = express();
-const port = 8000;
+const port = process.env.PORT;
 
 const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB);
