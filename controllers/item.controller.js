@@ -1,6 +1,6 @@
 const Item = require('../models/item.model');
 
-exports.home = function(req, res) {
+exports.hello = function(req, res) {
   res.send('Hello, world!');
 };
 
@@ -9,10 +9,38 @@ exports.test = function(req, res) {
   res.send('Greetings from the Test controller!');
 };
 
+exports.get_items = function(req, res) {
+  Item.find({}, (err, items) => {
+    const data = [];
+
+    items.forEach(item => {
+      data.push(item);
+    });
+
+    res.send(data);
+  });
+};
+
 exports.item_create = function(req, res, next) {
+  const {
+    name,
+    price,
+    brand_name,
+    location,
+    notes,
+    gtin14,
+    size,
+    on_sale,
+  } = req.body;
   const item = new Item({
-    name: req.body.name,
-    price: req.body.price,
+    name,
+    price,
+    brand_name,
+    location,
+    notes,
+    gtin14,
+    size,
+    on_sale: on_sale || false,
   });
 
   item.save(err => {
@@ -31,9 +59,9 @@ exports.item_details = function(req, res, next) {
 };
 
 exports.item_update = function(req, res, next) {
-  Item.findByIdAndUpdate(req.params.id, { $set: req.body }, (err, item) => {
+  Item.findByIdAndUpdate(req.params.id, { $set: req.body }, err => {
     if (err) return next(err);
-    res.send('Item udpated.');
+    res.send('Item updated.');
   });
 };
 
