@@ -18,7 +18,7 @@ exports.get_items = function(req, res) {
     });
 
     res.send(data);
-  });
+  }).sort({ _id: -1 });
 };
 
 exports.item_create = function(req, res, next) {
